@@ -51,14 +51,14 @@
 
 
 -(void)_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
-    static BOOL dismisFromWKFileUploadPanel = NO;
-    if (!dismisFromWKFileUploadPanel) {
+    static BOOL dismisFromFileUploadPanel = NO;
+    if (!dismisFromFileUploadPanel) {
         [self _dismissViewControllerAnimated:flag completion:^{
             if (completion) {
                 if (self.FileUploadPanelFlag) {
-                    dismisFromWKFileUploadPanel = YES;
+                    dismisFromFileUploadPanel = YES;
                     completion();
-                    dismisFromWKFileUploadPanel = NO;
+                    dismisFromFileUploadPanel = NO;
                 }else{
                     completion();
                 }
