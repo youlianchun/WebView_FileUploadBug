@@ -18,7 +18,7 @@
     return [objc_getAssociatedObject(self, @selector(FileUploadPanelFlag)) boolValue];
 }
 -(void)setFileUploadPanelFlag:(BOOL)FileUploadPanelFlag {
-    objc_setAssociatedObject(self, @selector(FileUploadPanelFlag), @(FileUploadPanelFlag), OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(FileUploadPanelFlag), @(FileUploadPanelFlag), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 + (void)load {
