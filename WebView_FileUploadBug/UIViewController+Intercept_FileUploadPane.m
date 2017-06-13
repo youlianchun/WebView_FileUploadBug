@@ -55,4 +55,5 @@
     //拦截代码。。。
     [self _imagePickerController:imagePicker didFinishPickingMultipleMediaWithInfo:infos];
 }
+
 @end
