@@ -9,8 +9,8 @@
 #import "ViewController.h"
 #import <WebKit/WebKit.h>
 
-typedef WKWebView WebView;
-//typedef UIWebView WebView;
+//typedef WKWebView WebView;
+typedef UIWebView WebView;
 
 @interface ViewController ()
 @property (nonatomic, retain) WebView *webView;

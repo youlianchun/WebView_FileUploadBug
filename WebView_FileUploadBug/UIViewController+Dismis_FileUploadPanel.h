@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (Dismis_WKFileUploadPanel)
+@interface UIViewController (Dismis_FileUploadPanel)
 
 @end
