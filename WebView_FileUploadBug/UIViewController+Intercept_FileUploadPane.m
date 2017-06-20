@@ -15,16 +15,27 @@
 }
 @end
 @implementation _UIImagePickerController_IFUP
+
 -(instancetype)initWithReceiver:(id<UINavigationControllerDelegate,UIImagePickerControllerDelegate>)receiver {
     if (self) {
         _receiverDelegate = receiver;
     }
     return self;
 }
+
 - (void)imagePickerController:(UIImagePickerController *)imagePicker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //拦截代码。。。
     NSLog(@"didFinishPickingMediaWithInfo: %@", info.description);
     [_receiverDelegate imagePickerController:imagePicker didFinishPickingMediaWithInfo:info];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)imagePicker didFinishPickingMultipleMediaWithInfo:(NSArray *)infos {
+    //拦截代码。。。
+    NSLog(@"didFinishPickingMultipleMediaWithInfo: %@", infos.description);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [_receiverDelegate performSelector:_cmd withObject:imagePicker withObject:infos];
+#pragma clang diagnostic pop
 }
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {

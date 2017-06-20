@@ -26,7 +26,7 @@
     dispatch_once(&onceToken, ^{
         Class class = [self class];
         SEL originalSelector = @selector(dismissViewControllerAnimated:completion:);
-        SEL swizzledSelector = @selector(_dismissViewControllerAnimated:completion:);
+        SEL swizzledSelector = @selector(dfup_dismissViewControllerAnimated:completion:);
         Method originalMethod = class_getInstanceMethod(class, originalSelector);
         Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
         BOOL success = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
@@ -37,7 +37,7 @@
         }
         
         originalSelector = @selector(presentViewController:animated:completion:);
-        swizzledSelector = @selector(_presentViewController:animated:completion:);
+        swizzledSelector = @selector(dfup_presentViewController:animated:completion:);
         originalMethod = class_getInstanceMethod(class, originalSelector);
         swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
         success = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
@@ -50,10 +50,10 @@
 }
 
 
--(void)_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
+-(void)dfup_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
     static BOOL dismisFromFileUploadPanel = NO;
     if (!dismisFromFileUploadPanel) {
-        [self _dismissViewControllerAnimated:flag completion:^{
+        [self dfup_dismissViewControllerAnimated:flag completion:^{
             if (completion) {
                 if (self.FileUploadPanelFlag) {
                     dismisFromFileUploadPanel = YES;
@@ -67,7 +67,7 @@
     }
 }
 
--(void)_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+-(void)dfup_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
     if ([viewControllerToPresent isKindOfClass:[UIDocumentMenuViewController class]]) {
         UIDocumentMenuViewController *dvc = (UIDocumentMenuViewController*)viewControllerToPresent;
         if ([dvc.delegate isKindOfClass:NSClassFromString(@"WKFileUploadPanel")] || [dvc.delegate isKindOfClass:NSClassFromString(@"UIWebFileUploadPanel")]) {
@@ -75,7 +75,7 @@
             dvc.FileUploadPanelFlag = YES;
         }
     }
-    [self _presentViewController:viewControllerToPresent animated:flag completion:completion];
+    [self dfup_presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
 @end
