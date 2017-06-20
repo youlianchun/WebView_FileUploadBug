@@ -23,6 +23,7 @@
 }
 - (void)imagePickerController:(UIImagePickerController *)imagePicker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //拦截代码。。。
+    NSLog(@"didFinishPickingMediaWithInfo: %@", info.description);
     [_receiverDelegate imagePickerController:imagePicker didFinishPickingMediaWithInfo:info];
 }
 
