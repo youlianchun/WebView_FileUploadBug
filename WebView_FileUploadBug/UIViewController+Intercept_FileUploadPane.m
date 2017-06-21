@@ -86,9 +86,23 @@
     if ([delegate isKindOfClass:NSClassFromString(@"WKFileUploadPanel")]||[delegate isKindOfClass:NSClassFromString(@"UIWebFileUploadPanel")]) {
         self.ifup = [[_UIImagePickerController_IFUP alloc] initWithReceiver:delegate];
         [self ifup_setDelegate:(id<UINavigationControllerDelegate,UIImagePickerControllerDelegate>)self.ifup];
+        
+//        id i = delegate;//测试代码
+//        id B = [i valueForKeyPath:@"allowMultipleFiles"];
+//        BOOL b = [B boolValue];
+//        NSLog(@"FileUploadPanel_allowMultipleFiles: %@", b ? @"YES" : @"NO");
     }else{
         [self ifup_setDelegate:delegate];
     }
 }
 
+////单选多选监听（观察者）
+////[self addObserver:self forKeyPath:@"allowsMultipleSelection" options:NSKeyValueObservingOptionNew context:nil];
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+//    if ([keyPath isEqualToString:@"allowsMultipleSelection"]) {
+//       id B = [change valueForKey:@"new"];
+//       BOOL b = [B boolValue];
+//        NSLog(@"");
+//    }
+//}
 @end
