@@ -23,12 +23,12 @@
     return self;
 }
 
-//- (void)imagePickerController:(UIImagePickerController *)imagePicker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    //拦截代码。。。
-//    NSLog(@"didFinishPickingMediaWithInfo: %@", info.description);
-//    [_receiverDelegate imagePickerController:imagePicker didFinishPickingMediaWithInfo:info];
-//}
-//单选多选都会走 didFinishPickingMultipleMediaWithInfo
+- (void)imagePickerController:(UIImagePickerController *)imagePicker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    //拦截代码。。。
+    NSLog(@"didFinishPickingMediaWithInfo: %@", info.description);
+    [_receiverDelegate imagePickerController:imagePicker didFinishPickingMediaWithInfo:info];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)imagePicker didFinishPickingMultipleMediaWithInfo:(NSArray *)infos {
     //拦截代码。。。
     NSLog(@"didFinishPickingMultipleMediaWithInfo: %@", infos.description);
