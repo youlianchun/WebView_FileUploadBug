@@ -73,7 +73,7 @@ static void dfup_swizzledMethod(Class class, SEL originalSelector, SEL swizzledS
     if ([viewControllerToPresent respondsToSelector:@selector(delegate)])
     {
         id delegate = [viewControllerToPresent valueForKey:@"delegate"];
-        if ([delegate isKindOfClass:objc_getRequiredClass("WKFileUploadPanel")] || [delegate isKindOfClass:objc_getRequiredClass("UIWebFileUploadPanel")])
+        if ([delegate isKindOfClass:objc_getClass("WKFileUploadPanel")] || [delegate isKindOfClass:objc_getClass("UIWebFileUploadPanel")])
         {
             self.FileUploadPanelFlag = YES;
             viewControllerToPresent.FileUploadPanelFlag = YES;
